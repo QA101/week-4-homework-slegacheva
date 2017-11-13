@@ -1,12 +1,22 @@
+package hw4;
+
 import java.util.ArrayList;
+import java.util.Locale.Category;
+import java.util.Map;
+import java.util.Scanner;
+
+import javax.rmi.CORBA.Stub;
 
 public class School {
 	
 	//Variables for this class
 	ArrayList<Book> catalog = new ArrayList<Book>();
-	int numStudents = 0;
-	String name;
-
+	ArrayList<Students> catalog1 = new ArrayList<Students>();
+//	ArrayList<Student> catalog1 = new ArrayList<Student>();
+	//int numStudents = 0;
+    String name;
+    //String name1;
+   
 	/**
 	 * Start the execution of your program here.
 	 * 
@@ -29,7 +39,14 @@ public class School {
 	 */
 	public static void main(String args[]) {
 		//TODO create a school (similar to the library)
+		School school = new School("Issaquah Valey Elementary");	
+		school.Students();
+		System.out.println(school.toString());
 		
+		
+		//System.out.println("Students:");
+		//System.out.println(students.toString1());
+
 		//TODO Print the toString method in school. Such as, school.toString()
 		
 		//TODO Print any other variables that make sense for a school. Be creative.
@@ -42,6 +59,16 @@ public class School {
 	 */
 	public School(String name) {
 		this.name = name;
+        catalog.add(new Book("Dune", 500, "Fiction", "Frank Herbert"));
+		
+		catalog.add(new Book("The Wretched of Muirwood (Legends of Muirwood Book 1)", 300, "Fantasy", "Jeff Wheeler"));
+		
+		catalog.add(new Book("The Blight of Muirwood (Legends of Muirwood Book 2)", 466, "Fantasy", "Jeff Wheeler"));
+		
+		catalog.add(new Book("Dune Messiah", 340, "Science Fiction", ""));
+		
+		catalog.add(new Book("Children of Dune", 420, "Science Fiction",  ""));
+		catalog.size();
 	}
 	
 	/**
@@ -49,32 +76,33 @@ public class School {
 	 */
 	public String toString() {
 		//TODO Write a method to return a list of all books at the school
-		return "TODO";
+		//return "TODO";
+		String returnString = "Books: " + "\n" ;
+		for( Book b : catalog) {
+			returnString += b + "\n";
+		}
+		returnString += "\nTotal books: " + catalog.size() + "\n";
+		
+		returnString += "\nStudents: " + "\n" ;
+		for( Students s : catalog1) {
+			returnString += s + "\n";
+		}
+		returnString += "\nTotal students: " + catalog1.size();
+		
+		return returnString;
 	}
 	
 	/**
 	 * adds a single student to the school
 	 */
-	public void AddSingleStudent() {
-		numStudents++;
-		//Do I need a MAX_STUDENTS ???
+
+	public void Students() {
+        catalog1.add(new Students("Svetlana","Legacheva"));
+        
+        catalog1.add(new Students("Tony","Lawrence"));
+		
+		catalog1.add(new Students("Dmitry","Livinov"));
 	}
 	
-	/**
-	 * removes a single student from the school
-	 */
-	public void removeSingleStudent() {
-		if(numStudents > 0) {
-			numStudents--;
-		}
 	}
-	
-	/**
-	 * method to return number of students
-	 * 
-	 * @return number of students in the school
-	 */
-	public int getStudents() {
-		return numStudents;
-	}
-}
+
